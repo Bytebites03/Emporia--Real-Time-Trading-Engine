@@ -1,0 +1,351 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    background: #0a0e27;
+    color: #e0e0e0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, #1a1f3a 0%, #0f1428 100%);
+    border-radius: 12px;
+    border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.connection-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ff4444;
+    animation: pulse 2s infinite;
+}
+
+.status-dot.connected {
+    background: #4caf50;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: #1a1f3a;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #2a2f4a;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.card h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #4caf50;
+    border-left: 3px solid #4caf50;
+    padding-left: 10px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 12px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 10px;
+    background: #0f1428;
+    border: 1px solid #2a2f4a;
+    color: #e0e0e0;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-buy, .btn-sell {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.btn-buy {
+    background: #2a5f4a;
+    color: #4caf50;
+}
+
+.btn-buy.active {
+    background: #4caf50;
+    color: white;
+}
+
+.btn-sell {
+    background: #5f2a2a;
+    color: #ff6b6b;
+}
+
+.btn-sell.active {
+    background: #ff6b6b;
+    color: white;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #4caf50, #45a049);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    transition: transform 0.1s;
+}
+
+.btn-submit:active {
+    transform: scale(0.98);
+}
+
+.portfolio-stats {
+    display: grid;
+    gap: 10px;
+}
+
+.stat {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    background: #0f1428;
+    border-radius: 6px;
+}
+
+.stat-label {
+    color: #888;
+    font-size: 12px;
+}
+
+.stat-value {
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+}
+
+.orderbook-container {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.orderbook-header, .trades-header {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 8px;
+    background: #0f1428;
+    font-size: 11px;
+    font-weight: bold;
+    color: #888;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+.ask-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 4px 8px;
+    font-size: 12px;
+    color: #ff6b6b;
+    font-family: 'Courier New', monospace;
+}
+
+.bid-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 4px 8px;
+    font-size: 12px;
+    color: #4caf50;
+    font-family: 'Courier New', monospace;
+}
+
+.spread {
+    text-align: center;
+    padding: 10px;
+    background: #0f1428;
+    margin: 10px 0;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.trades-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.trade-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 6px 8px;
+    font-size: 12px;
+    font-family: 'Courier New', monospace;
+    border-bottom: 1px solid #2a2f4a;
+}
+
+.trade-buy {
+    color: #4caf50;
+}
+
+.trade-sell {
+    color: #ff6b6b;
+}
+
+.orders-list {
+    min-height: 100px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.empty-state {
+    text-align: center;
+    color: #888;
+    padding: 20px;
+}
+
+.chart-card {
+    grid-column: span 2;
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .chart-card {
+        grid-column: span 1;
+    }
+}
+/* Volume Profile Styles */
+.volume-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+    font-size: 11px;
+}
+
+.volume-price {
+    width: 60px;
+    color: #888;
+}
+
+.volume-bar-fill {
+    height: 20px;
+    background: linear-gradient(90deg, #4caf50, #8bc34a);
+    border-radius: 3px;
+    transition: width 0.3s;
+}
+
+.volume-value {
+    width: 80px;
+    text-align: right;
+    color: #4caf50;
+}
+
+/* Enhanced Order Book */
+.orderbook-depth {
+    margin-top: 10px;
+    padding: 10px;
+    background: #0f1428;
+    border-radius: 6px;
+}
+
+.depth-bar {
+    height: 4px;
+    background: #2a2f4a;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.depth-fill {
+    height: 100%;
+    background: #4caf50;
+    transition: width 0.3s;
+}
+
+.depth-fill.ask {
+    background: #ff6b6b;
+}
+
+/* Price Alerts */
+.alert-form {
+    margin-top: 15px;
+    padding: 10px;
+    background: #0f1428;
+    border-radius: 6px;
+}
+
+.alert-input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 8px;
+    background: #1a1f3a;
+    border: 1px solid #2a2f4a;
+    color: #e0e0e0;
+    border-radius: 4px;
+}
+
+.alert-btn {
+    width: 100%;
+    padding: 8px;
+    background: #4caf50;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+}
