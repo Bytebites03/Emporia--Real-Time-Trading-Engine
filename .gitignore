@@ -1,0 +1,6 @@
+backend/.env
+backend/ca.pem
+test_aiven.py
+backend/create_database.py
+__pycache__/
+*.pyc
