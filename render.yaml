@@ -1,0 +1,25 @@
+cd "D:/real time trading engine"
+cat > render.yaml << 'EOF'
+services:
+  - type: web
+    name: emporia-backend
+    runtime: python
+    repo: https://github.com/Bytebites03/Emporia--Real-Time-Trading-Engine
+    branch: main
+    buildCommand: cd backend && pip install -r requirements.txt
+    startCommand: cd backend && uvicorn app:app --host 0.0.0.0 --port 10000
+    envVars:
+      - key: DB_HOST
+        value: mysql-4bf1003-priyanshiisrivastava0303-3603.l.aivencloud.com
+      - key: DB_PORT
+        value: 13888
+      - key: DB_NAME
+        value: defaultdb
+      - key: DB_USER
+        value: avnadmin
+      - key: DB_PASSWORD
+        value: AVNS_R89EkYiLjk5VNoiO0tl
+        sync: false
+      - key: PYTHON_VERSION
+        value: 3.11.0
+EOF
