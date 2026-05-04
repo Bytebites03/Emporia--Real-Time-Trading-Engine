@@ -3,6 +3,8 @@ Complete ER Database - 9 Tables with All Relationships
 Tables are created only ONCE, data persists across restarts
 """
 
+import os
+
 import mysql.connector
 from mysql.connector import Error
 from datetime import datetime
@@ -19,19 +21,21 @@ class ERDatabase:
         self.init_database()
     
     def connect(self):
-        """Connect to MySQL database"""
+        """Connect to Aiven MySQL database"""
         try:
             self.connection = mysql.connector.connect(
-                host='localhost',
+                host='mysql-4bf1003-priyanshiisrivastava0303-3603.l.aivencloud.com',
+                port=13888,
                 database='trading_engine',
-                user='trader',
-                password='trading123',
+                user='avnadmin',
+                password=os.getenv('AVNS_R89EkYiLjk5VNoiO0tl'),  # Replace with actual password
+                ssl_ca='ca.pem',
                 autocommit=True
             )
-            print("✅ ER Database connected!")
+            print("✅ Connected to Aiven MySQL!")
             return True
         except Error as e:
-            print(f"❌ Database connection failed: {e}")
+            print(f"❌ Connection failed: {e}")
             return False
     
     def execute_query(self, query: str, params: tuple = None):
@@ -42,6 +46,7 @@ class ERDatabase:
             
             cursor = self.connection.cursor(dictionary=True)
             cursor.execute(query, params or ())
+            self.connection.commit()
             return cursor
         except Error as e:
             print(f"⚠️ Query warning: {e}")
@@ -472,18 +477,6 @@ class ERDatabase:
         if cursor:
             return cursor.fetchall()
         return []
-def execute_query(self, query: str, params: tuple = None):
-    """Execute a query and return cursor"""
-    try:
-        if not self.connection or not self.connection.is_connected():
-            self.connect()
-        
-        cursor = self.connection.cursor(dictionary=True)
-        cursor.execute(query, params or ())
-        self.connection.commit()  # Make sure to commit!
-        return cursor
-    except Error as e:
-        print(f"Query error: {e}")
-        return None
+
 # Create global instance
 db = ERDatabase()
